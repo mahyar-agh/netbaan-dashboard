@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import Chart from "./Chart";
 
 const portocolObj = {
   Cloud: {
@@ -108,11 +109,17 @@ const Status = styled.div`
       `}
   }
 `;
+const ChartContainer = styled.div`
+  width: 60px;
+  height: 40px;
+`;
 
 function DashboardBoxItem({ portocol, onClick }) {
   const {
     ports,
     total,
+    live,
+    monitored,
     total_live: totalLive,
     total_monitored: totalMonitored,
     vulns,
@@ -139,7 +146,9 @@ function DashboardBoxItem({ portocol, onClick }) {
             <span>{totalLive}</span>
           </div>
 
-          <img src="/dashboardfull1.png" alt="status" />
+          <ChartContainer>
+            <Chart data={live} />
+          </ChartContainer>
         </Status>
         <Status>
           <div>
@@ -147,7 +156,9 @@ function DashboardBoxItem({ portocol, onClick }) {
             <span>{totalMonitored}</span>
           </div>
 
-          <img src="/dashboardfull1.png" alt="status" />
+          <ChartContainer>
+            <Chart data={monitored} />
+          </ChartContainer>
         </Status>
       </Row>
 
